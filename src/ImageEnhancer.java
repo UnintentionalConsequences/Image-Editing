@@ -51,6 +51,8 @@ public class ImageEnhancer extends Component implements ActionListener {
 
     //  Students: Here, you should declare two variables to hold instances
     	//of your stack class, with one for Undo and one for Redo.
+    BufferedImageStack undo = new BufferedImageStack();
+    BufferedImageStack redo = new BufferedImageStack();
     
 
     // A 3x3 filtering kernel for high-pass filtering:
@@ -235,8 +237,8 @@ public class ImageEnhancer extends Component implements ActionListener {
      //  Students: Uncomment this code that prints out the numbers of elements
      	// in each of the two stacks (Undo and Redo):
         
-        //System.out.println("The Undo stack contains " + undoStack.getSize() + " elements.");
-        //System.out.println("The Redo stack contains " + redoStack.getSize() + " elements.");
+        System.out.println("The Undo stack contains " + undoStack.getSize() + " elements.");
+        System.out.println("The Redo stack contains " + redoStack.getSize() + " elements.");
     }
     
     //To make sure we are actually assigning the values of our BufferedImages instead of
