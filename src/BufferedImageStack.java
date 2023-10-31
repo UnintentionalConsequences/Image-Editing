@@ -9,7 +9,6 @@ public class BufferedImageStack {
 		arrayImage = new BufferedImage[2];
 	}
 	
-
 	public void push(BufferedImage someBufferedImage) {
 		for(int i = 0; i<arrayImage.length; i++) {
 			if(arrayImage[i]==null) {
