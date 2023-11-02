@@ -53,7 +53,6 @@ public class ImageEnhancer extends Component implements ActionListener {
     	//of your stack class, with one for Undo and one for Redo.
     BufferedImageStack undo = new BufferedImageStack();
     BufferedImageStack redo = new BufferedImageStack();
-    
 
     // A 3x3 filtering kernel for high-pass filtering:
     public static final float[] highPass = {
@@ -156,6 +155,9 @@ public class ImageEnhancer extends Component implements ActionListener {
             System.exit(1);
         }
         
+        undo = new BufferedImageStack();
+        redo = new BufferedImageStack();
+        
         //  Students: Add code to create empty stack instances for the Undo stack 
         	//and the Redo stack, and put your code for this here:
         
@@ -189,8 +191,17 @@ public class ImageEnhancer extends Component implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //  Students: Add code in this method to save the current buffered image for
         	//undoing and dispose of any redoable actions.
-        
-        //  Also add code to enable and disable the Undo and Redo menu items, and to process
+     
+    	if(undo.getSize()==0) {
+    		undoItem.setEnabled(false);
+    	}
+    	else {
+    		undo.push(biWorking);
+    		undoItem.setEnabled(true);
+    	}
+    	
+    	
+    	//  Also add code to enable and disable the Undo and Redo menu items, and to process
         //  these items when the user selects them.
 
      //System.out.println("The actionEvent is "+e); // This can be useful when debugging.
@@ -213,9 +224,9 @@ public class ImageEnhancer extends Component implements ActionListener {
       }
       return image_enhancer_instance;
     }
- public BufferedImage getBufferedImage() { // For use by the autograder
-  return biWorking;
- }
+    public BufferedImage getBufferedImage() { // For use by the autograder
+    	return biWorking;
+    }
 
     public static void main(String s[]) {
      new ImageEnhancer().run(); // Called from below, and by the autograder.
@@ -237,8 +248,8 @@ public class ImageEnhancer extends Component implements ActionListener {
      //  Students: Uncomment this code that prints out the numbers of elements
      	// in each of the two stacks (Undo and Redo):
         
-        System.out.println("The Undo stack contains " + undoStack.getSize() + " elements.");
-        System.out.println("The Redo stack contains " + redoStack.getSize() + " elements.");
+        System.out.println("The Undo stack contains " + undo.getSize() + " elements.");
+        System.out.println("The Redo stack contains " + redo.getSize() + " elements.");
     }
     
     //To make sure we are actually assigning the values of our BufferedImages instead of
