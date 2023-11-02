@@ -4,7 +4,7 @@ import java.util.EmptyStackException;
 public class BufferedImageStack {
 	
 	private BufferedImage[] arrayImage;
-	private int size = 0;
+	private int size = 2;
 	
 	public BufferedImageStack() {
 		arrayImage = new BufferedImage[2];

@@ -53,7 +53,6 @@ public class ImageEnhancer extends Component implements ActionListener {
     	//of your stack class, with one for Undo and one for Redo.
     BufferedImageStack undo = new BufferedImageStack();
     BufferedImageStack redo = new BufferedImageStack();
-    
 
     // A 3x3 filtering kernel for high-pass filtering:
     public static final float[] highPass = {
@@ -156,6 +155,9 @@ public class ImageEnhancer extends Component implements ActionListener {
             System.exit(1);
         }
         
+        undo = new BufferedImageStack();
+        redo = new BufferedImageStack();
+        
         //  Students: Add code to create empty stack instances for the Undo stack 
         	//and the Redo stack, and put your code for this here:
         
@@ -235,9 +237,9 @@ public class ImageEnhancer extends Component implements ActionListener {
       }
       return image_enhancer_instance;
     }
- public BufferedImage getBufferedImage() { // For use by the autograder
-  return biWorking;
- }
+    public BufferedImage getBufferedImage() { // For use by the autograder
+    	return biWorking;
+    }
 
     public static void main(String s[]) {
      new ImageEnhancer().run(); // Called from below, and by the autograder.
