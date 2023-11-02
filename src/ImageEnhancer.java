@@ -196,6 +196,7 @@ public class ImageEnhancer extends Component implements ActionListener {
     		redo = new BufferedImageStack();
     		undo.push(copyImage(biWorking));
         	undoItem.setEnabled(true);
+        	redoItem.setEnabled(false);
     	}
     	
   
