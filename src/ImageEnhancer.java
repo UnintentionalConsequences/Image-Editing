@@ -189,6 +189,26 @@ public class ImageEnhancer extends Component implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //  Students: Add code in this method to save the current buffered image for
         	//undoing and dispose of any redoable actions.
+    	
+    	if(e.getSource() != undoItem) {
+    		undo.push(copyImage(biWorking));
+        	undoItem.setEnabled(true);
+    	}
+    	
+  
+    	if(e.getSource() == undoItem) {
+    		redo.push(copyImage(biWorking));
+    		biWorking = undo.pop();
+    		biWorking = undo.pop();
+    		if(undo.getSize() == 0) undoItem.setEnabled(false);
+    		
+    	}
+    	
+    	if(e.getSource() == redoItem) {
+    		undo.push(copyImage(biWorking));
+    		biWorking = redo.pop();
+    		if(redo.getSize() == 0) redoItem.setEnabled(false);
+    	}
         
         //  Also add code to enable and disable the Undo and Redo menu items, and to process
         //  these items when the user selects them.
@@ -237,8 +257,8 @@ public class ImageEnhancer extends Component implements ActionListener {
      //  Students: Uncomment this code that prints out the numbers of elements
      	// in each of the two stacks (Undo and Redo):
         
-        System.out.println("The Undo stack contains " + undoStack.getSize() + " elements.");
-        System.out.println("The Redo stack contains " + redoStack.getSize() + " elements.");
+        System.out.println("The Undo stack contains " + undo.getSize() + " elements.");
+        System.out.println("The Redo stack contains " + redo.getSize() + " elements.");
     }
     
     //To make sure we are actually assigning the values of our BufferedImages instead of
