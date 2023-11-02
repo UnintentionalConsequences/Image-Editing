@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 public class BufferedImageStack {
 	
 	private BufferedImage[] arrayImage;
+	private int size = 0;
 	
 	public BufferedImageStack() {
 		arrayImage = new BufferedImage[2];
@@ -11,7 +12,7 @@ public class BufferedImageStack {
 	
 	public void push(BufferedImage someBufferedImage) {
 		for(int i = 0; i<arrayImage.length; i++) {
-			if(arrayImage[i]==null) {
+			if(arrayImage[i] == null) {
 				arrayImage[i] = someBufferedImage;
 				return;
 			}
@@ -26,24 +27,21 @@ public class BufferedImageStack {
 		arrayImage2[arrayImage.length] = someBufferedImage;
 		
 		arrayImage = arrayImage2;
+		
+		size++;
+		System.out.println(size);
 	}
 	
 	public BufferedImage pop() {
-		if(arrayImage[0]==null) {
-			throw new EmptyStackException();
-		}
-		for(int i = arrayImage.length-1; i>=0; i++) {
-			if(arrayImage[i]!=null) {
-				BufferedImage temp = arrayImage[i];
-				arrayImage[i] = null;
-				return temp;
-			}
-		}
-		return null;
+		System.out.println(size);
+		BufferedImage temp = arrayImage[getSize()-1];
+		arrayImage[getSize()-1] = null;
+		size--;
+		return temp;
 	}
 	
 	public boolean isEmpty() {
-		return arrayImage[0]==null;
+		return (size==0);
 	}
 	
 
@@ -56,11 +54,7 @@ public class BufferedImageStack {
 	}
 	
 	public int getSize() {
-		int cnt = 0;
-		for(int i=0; i<arrayImage.length; i++) {
-			if(arrayImage[i] != null) cnt++;
-		}
-		return cnt;
+		return size;
 	}
 	
 	public int getArraySize() {

@@ -191,17 +191,31 @@ public class ImageEnhancer extends Component implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //  Students: Add code in this method to save the current buffered image for
         	//undoing and dispose of any redoable actions.
-     
-    	if(undo.getSize()==0) {
-    		undoItem.setEnabled(false);
-    	}
-    	else {
-    		undo.push(biWorking);
-    		undoItem.setEnabled(true);
-    	}
-    	
     	
     	//  Also add code to enable and disable the Undo and Redo menu items, and to process
+
+    	
+    	if(e.getSource() != undoItem) {
+    		undo.push(copyImage(biWorking));
+        	undoItem.setEnabled(true);
+    	}
+    	
+  
+    	if(e.getSource() == undoItem) {
+    		redo.push(copyImage(biWorking));
+    		biWorking = undo.pop();
+    		biWorking = undo.pop();
+    		if(undo.getSize() == 0) undoItem.setEnabled(false);
+    		
+    	}
+    	
+    	if(e.getSource() == redoItem) {
+    		undo.push(copyImage(biWorking));
+    		biWorking = redo.pop();
+    		if(redo.getSize() == 0) redoItem.setEnabled(false);
+    	}
+        
+        //  Also add code to enable and disable the Undo and Redo menu items, and to process
         //  these items when the user selects them.
 
      //System.out.println("The actionEvent is "+e); // This can be useful when debugging.
