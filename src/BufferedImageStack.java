@@ -11,8 +11,11 @@ public class BufferedImageStack {
 	}
 	
 	public void push(BufferedImage someBufferedImage) {
+		size++;
+		
 		for(int i = 0; i<arrayImage.length; i++) {
-			if(arrayImage[i] == null) {
+			Object check = arrayImage[i];
+			if(!(check instanceof BufferedImage)) {
 				arrayImage[i] = someBufferedImage;
 				return;
 			}
@@ -25,18 +28,13 @@ public class BufferedImageStack {
 		}
 		
 		arrayImage2[arrayImage.length] = someBufferedImage;
-		
 		arrayImage = arrayImage2;
-		
-		size++;
-		System.out.println(size);
 	}
 	
 	public BufferedImage pop() {
-		System.out.println(size);
-		BufferedImage temp = arrayImage[getSize()-1];
-		arrayImage[getSize()-1] = null;
 		size--;
+		BufferedImage temp = arrayImage[size];
+		arrayImage[size] = null;
 		return temp;
 	}
 	
@@ -52,6 +50,8 @@ public class BufferedImageStack {
 			return arrayImage[index];
 		}
 	}
+	
+	
 	
 	public int getSize() {
 		return size;

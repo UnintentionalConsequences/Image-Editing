@@ -190,7 +190,8 @@ public class ImageEnhancer extends Component implements ActionListener {
         //  Students: Add code in this method to save the current buffered image for
         	//undoing and dispose of any redoable actions.
     	
-    	if(e.getSource() != undoItem) {
+    	if(e.getSource() != undoItem && e.getSource() != redoItem) {
+    		redo = new BufferedImageStack();
     		undo.push(copyImage(biWorking));
         	undoItem.setEnabled(true);
     	}
@@ -198,15 +199,16 @@ public class ImageEnhancer extends Component implements ActionListener {
   
     	if(e.getSource() == undoItem) {
     		redo.push(copyImage(biWorking));
-    		biWorking = undo.pop();
-    		biWorking = undo.pop();
+    		redoItem.setEnabled(true);
+    		biFiltered = copyImage(undo.pop());
     		if(undo.getSize() == 0) undoItem.setEnabled(false);
     		
     	}
     	
     	if(e.getSource() == redoItem) {
     		undo.push(copyImage(biWorking));
-    		biWorking = redo.pop();
+    		undoItem.setEnabled(true);
+    		biFiltered = copyImage(redo.pop());
     		if(redo.getSize() == 0) redoItem.setEnabled(false);
     	}
         
