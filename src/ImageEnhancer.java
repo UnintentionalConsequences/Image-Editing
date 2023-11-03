@@ -9,6 +9,14 @@
 >>>>>>> 6108181c9b069a1bebf422592a158b49e9ec19da
  */
 
+/*
+ * Names: Chris Mathews, Henry Zhang
+ * Period: 4th Period
+ * 11/2/23
+ * Purpose: To create a system of undo and redo for an image editing program.
+ * 
+ */
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -192,26 +200,41 @@ public class ImageEnhancer extends Component implements ActionListener {
         //  Students: Add code in this method to save the current buffered image for
         	//undoing and dispose of any redoable actions.
     	
+    	//Logic:
+    	//This code runs for all actions thats not undo or redo
+    	//So essentially this code runs everytime the image gets filtered
     	if(e.getSource() != undoItem && e.getSource() != redoItem) {
+    		//we empty the redo stack
     		redo = new BufferedImageStack();
+    		//push the current image onto undo before we update it
     		undo.push(copyImage(biWorking));
+    		//enable redo and disable redo
         	undoItem.setEnabled(true);
         	redoItem.setEnabled(false);
     	}
     	
-  
+    	//This is the code that runs for undo
     	if(e.getSource() == undoItem) {
+    		//We push the current image into redo before we update it
     		redo.push(copyImage(biWorking));
+    		//enable redo
     		redoItem.setEnabled(true);
+    		//sets the current image to the top of the undo stack
     		biFiltered = copyImage(undo.pop());
+    		//if undo is empty, then undo command is disabled
     		if(undo.getSize() == 0) undoItem.setEnabled(false);
     		
     	}
     	
+    	//This is the code that runs for redo
     	if(e.getSource() == redoItem) {
+    		//We push the current image into undo before we update it
     		undo.push(copyImage(biWorking));
+    		//enable undo
     		undoItem.setEnabled(true);
+    		//sets the current image to the top of the redo stack
     		biFiltered = copyImage(redo.pop());
+    		//if redo is empty, then redo command is disabled
     		if(redo.getSize() == 0) redoItem.setEnabled(false);
     	}
         
