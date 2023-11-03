@@ -12,7 +12,7 @@
 /*
  * Names: Chris Mathews, Henry Zhang
  * Period: 4th Period
- * 11/2/23
+ * 11/3/23
  * Purpose: To create a system of undo and redo for an image editing program.
  * 
  */
