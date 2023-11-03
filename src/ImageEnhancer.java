@@ -9,8 +9,7 @@
  * Names: Chris Mathews, Henry Zhang
  * Period: 4th Period
  * 11/3/23
- * Purpose: To create a system of undo and redo for an image editing program.
- * 
+ * Purpose: To create a system of undo and redo for an image editing program and to learn about stacks.
  */
 
 import java.awt.Component;

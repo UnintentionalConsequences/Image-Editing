@@ -1,3 +1,10 @@
+/* 
+ * Names: Chris Mathews & Henry Zhang
+ * Period: 4th
+ * Date: 11/3/2023
+ * Purpose: To create a system of undo and redo for an image editing program and to learn about stacks
+*/
+
 import java.awt.image.BufferedImage;
 import java.util.EmptyStackException;
 
