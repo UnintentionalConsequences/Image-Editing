@@ -3,10 +3,6 @@
  * (c) By Steve Tanimoto,  January 2, 2016,
  * with contributions by Si J. Liu, 
  * and originally inspired by a tutorial example at Oracle.com.
-<<<<<<< HEAD
- * poopy pants
-=======
->>>>>>> 6108181c9b069a1bebf422592a158b49e9ec19da
  */
 
 import java.awt.Component;
